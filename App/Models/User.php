@@ -23,11 +23,21 @@ class User extends Orm
         return 3;
     }
 
+    public function checkPassword($p) {
+        $regex="";
+        if (preg_match($regex,$p)) {
+            return true;
+        }
+        return false;
+    }
+
     public function getUserLogged()  {
-        return $this->userLogged;
+        if ($_SESSION['user_logged'])
+        return $_SESSION['user_logged'];
     }
 
     public function setUserLogged($user) {
+        $_SESSION['user_logged'] = $user;
         $this->userLogged=$user;
     }
 }

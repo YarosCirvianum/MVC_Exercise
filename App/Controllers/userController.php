@@ -43,13 +43,20 @@ class userController extends Controller
         echo "esetic al login";
         $username = $_POST['username'];
         $password = $_POST['password'];
+
+
         $u = new User;
+        if (!$u->checkPassword($password)) {
+            $params['error']='Crontrasenya incorrecta';
+            $this->render("user/login",$params);
+        }
         $userLogged = $u->login($username,$password);
         if ($userLogged==3) {
             $params['error']='Credencials incorrectes';
             $this->render("user/login",$params);
         } else {
-            $_SESSION['user_logged'] =  $u->login($username,$password);
+            // $_SESSION['user_logged'] =  $u->login($username,$password);
+            $u->setUserLogged($userLogged);
         }
 
     }
