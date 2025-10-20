@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h2 class="text-center mb-4"> Registre d'usuari</h2>
-            <form action="../controller/register_controller.php" method="POST" class="border p-4 bg-light">
+            <form action="/user/store" method="POST" class="border p-4 bg-light">
                 <div class="mb-3">
                     <label for="username" class="form-label">Nom d'usuari: </label>
                     <input type="text" name="username" class="form-control" placeholder="Regex del nom usuari" required>
@@ -26,7 +26,9 @@
                 <div class="mt-3 text-center">
                     <p class="from-label mb-3 text-danger fw-bold fs-6">
                         <?php
-                        //codi php dels errors
+                         if (isset($params['error'])) {
+                            echo $params['error'];
+                        }
                         ?>
                     </p>
                     <p class="from-label mb-3 text-success fw-bold fs-6">

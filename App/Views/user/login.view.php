@@ -20,6 +20,9 @@
                     <p class="from-label mb-3 text-danger fw-bold fs-4">
                         <?php
                         //codi php de control d'errors
+                        if (isset($params['error'])) {
+                            echo $params['error'];
+                        }
                         ?>
                     </p>
                 </div>
