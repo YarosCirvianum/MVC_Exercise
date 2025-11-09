@@ -1,0 +1,30 @@
+// Colors base de l'app - Els teus colors personalitzats
+$color-accent: #5686FE;
+$color-fons: #43454A;
+$color-lletra: #F9FAFB;
+
+// Colors derivats - tornem a les funcions tradicionals que funcionen
+$color-accent-llum: lighten($color-accent, 10%);
+$color-accent-fosc: darken($color-accent, 10%);
+$color-fons-llum: lighten($color-fons, 5%);
+$color-fons-fosc: darken($color-fons, 2%);
+$color-lletra-secondary: darken($color-lletra, 15%);
+
+// Colors semàntics
+$primary: $color-accent;
+$secondary: $color-fons-llum;
+$success: #65c068;
+$warning: #FF9800;
+$danger: #F44336;
+$error: #F44336;
+$info: #2196F3;
+$light: $color-lletra;
+$dark: $color-fons;
+
+// Variables d'aplicació
+$bg-body: $color-fons;
+$bg-card: $color-fons-llum;
+$text-primary: $color-lletra;
+$text-secondary: $color-lletra-secondary;
+$border-color: lighten($color-fons, 15%);
+$border-radius: 8px;

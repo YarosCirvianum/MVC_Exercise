@@ -4,10 +4,9 @@ namespace App\Models;
 
 class Orm
 {
-
     protected $model;
 
-
+    // Constructor - initialize model in session
     public function __construct($model)
     {
         $this->model = $model;
@@ -16,9 +15,9 @@ class Orm
         }
     }
 
+    // Get item by ID
     public function getById($id)
     {
-        //retorna el item del id passat
         foreach ($_SESSION[$this->model] as $item) {
             if ($item['id'] == $id) {
                 return $item;
@@ -27,29 +26,43 @@ class Orm
         return null;
     }
 
+    // Remove item by ID
     public function removeItemById($id) {
-        //elimina el item amb el id passat
+        foreach ($_SESSION[$this->model] as $key => $item) {
+            if ($item['id'] == $id) {
+                unset($_SESSION[$this->model][$key]);
+                break;
+            }
+        }
     }
 
+    // Create new item
     public function create($item)
     {
         array_push($_SESSION[$this->model], $item);
     }
 
+    // Get all items
     public function getAll()
     {
         return $_SESSION[$this->model];
     }
 
+    // Update item by ID
     public function updateItemById($item) {
-        //actulaitza el item dins el model a 
-        //parir del id del item passat
+        foreach ($_SESSION[$this->model] as &$currentItem) {
+            if ($currentItem['id'] == $item['id']) {
+                $currentItem = $item;
+            }
+        }
     }
 
+    // Reset model data
     public function reset() {
-        //esboora el contingut del model
+        $_SESSION[$this->model] = [];
     }
 
+    // Check if session model exists
     public function sessionCreated()
     {
         if (isset($_SESSION[$this->model])) {
@@ -58,7 +71,13 @@ class Orm
         return false;
     }
 
+    // Get last ID for new item
     public function getLastId() {
-        //retorna el Id per crea un nou item del model
+        if (empty($_SESSION[$this->model])) {
+            return 0;
+        }
+
+        $lastItem = end($_SESSION[$this->model]);
+        return $lastItem['id'] + 1;
     }
 }

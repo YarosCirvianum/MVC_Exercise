@@ -2,7 +2,8 @@
 if(!isset($_SESSION)) {
     session_start();
 }
-include('./App/data.php');
+
+include('vendor/autoload.php');
 include('autoload.php');
 
 

@@ -1,0 +1,6 @@
+{
+  "name": "local/test-app",
+  "require": {
+    "phpmailer/phpmailer": "^7.0"
+  }
+}
